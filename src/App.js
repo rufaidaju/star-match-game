@@ -6,7 +6,19 @@ import PlayNumber from './components/PlayNumber';
 
 const StarMatch = () => {
 /*   const [playNum,setplayNum] = useState(9);
- */  const [stars,setStars] = useState(5)
+ */  const [stars,setStars] = useState(9);
+     const [availableNum,setAvailableNum]= useState([8,1,6,2,3,5,7]);
+     const [candidateNum,setCandidateNum]= useState([3,5,7]);
+
+     const buttonStatus= (buttonId) => {
+      if (!availableNum.includes(buttonId)){
+        return 'used'
+      }
+      if (candidateNum.includes(buttonId)){
+      return 'candidate'
+      }
+      return 'available'
+     }
 
   return (
     <div className="game">
@@ -18,7 +30,7 @@ const StarMatch = () => {
           {utils.range(1,stars).map(starId=> <Star key={starId}/>)}
         </div>
         <div className="right">
-          {utils.range(1,9).map(buttonId=> <PlayNumber key={buttonId} buttonId={buttonId} />)}
+          {utils.range(1,9).map(buttonId=> <PlayNumber key={buttonId} buttonId={buttonId} status={statusColors[buttonStatus(buttonId)]} />)}
         </div>
       </div>
       <div className="timer">Time Remaining: 10</div>
@@ -26,6 +38,13 @@ const StarMatch = () => {
   );
   
 };
+// Status colors
+const statusColors ={
+  'used' : 'green',
+  'wrong': 'red',
+  'candidate': 'blue',
+  'available': 'grey'
+}
 // Math science
 const utils = {
   // Sum an array
