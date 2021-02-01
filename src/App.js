@@ -8,13 +8,16 @@ const StarMatch = () => {
 /*   const [playNum,setplayNum] = useState(9);
  */  const [stars,setStars] = useState(9);
      const [availableNum,setAvailableNum]= useState([8,1,6,2,3,5,7]);
-     const [candidateNum,setCandidateNum]= useState([3,5,7]);
+     const [candidateNum,setCandidateNum]= useState([3,5,]);
 
      const buttonStatus= (buttonId) => {
       if (!availableNum.includes(buttonId)){
         return 'used'
       }
       if (candidateNum.includes(buttonId)){
+        if (utils.sum(candidateNum) > stars){
+           return 'wrong'
+        }
       return 'candidate'
       }
       return 'available'
