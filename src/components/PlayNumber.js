@@ -5,7 +5,10 @@ import '../App.css';
 
 const PlayNumber =(props) => {
     return(
-        <button className="number" style={{backgroundColor : props.status}} onClick={()=>console.log('THe Number clicked,',props.buttonId)}>
+        <button className="number" 
+        style={{backgroundColor : props.status}} 
+        onClick={()=>props.onClick(props.buttonId,props.status)}
+        >
         {props.buttonId}
         </button>
     )
